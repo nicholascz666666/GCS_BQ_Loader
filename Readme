@@ -1,0 +1,17 @@
+load_regular is DAG based approach. You can go to composer and create a DAG
+advantage:
+    no time limitation, future utilized
+
+load_onetime_command is cloud function based, and use same step as load_regular.
+however, not recommanded to run script in cloud function
+https://stackoverflow.com/questions/70802906/call-shell-script-from-within-google-cloud-function
+
+load_onetime_api is cloud function based using the api to do the load. 
+
+disadvantage: need to use gen2 cloud function and it still has time limitation as 1 hour for all the files' loading
+advantage: could be configued as bucket triggered cloud function so that once bucket got new file, it could be loaded.
+
+first 2 solutions based on the bq load command.  
+if use cloud function, may need a cloud scheduler to trigger the function
+
+all are psudocode and need modifications (get target table name, filter target folder? specify schema?).
